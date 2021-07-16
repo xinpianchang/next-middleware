@@ -7,7 +7,6 @@
       "strictNullChecks": true,
       "forceConsistentCasingInFileNames": true,
       "esModuleInterop": true,
-      "emitDeclarationOnly": true,
       "declaration": true,
       "module": "esnext",
       "moduleResolution": "node",
