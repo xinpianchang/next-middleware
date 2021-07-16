@@ -1,9 +1,10 @@
 // Type definitions for router
 
 declare module 'router' {
-  import { Path } from "path-to-regexp"
-  import { NextFunction, NextHandleFunction } from "connect"
-  import { IncomingMessage, ServerResponse } from "http"
+  import { NextFunction, NextHandleFunction } from 'connect'
+  import { IncomingMessage, ServerResponse } from 'http'
+
+  export type PATH = string | RegExp | Array<string | RegExp>
 
   export namespace Router {
     export interface RouteType {
@@ -13,7 +14,7 @@ declare module 'router' {
 
     type Method = 'all' | 'head' | 'get' | 'post' | 'delete' | 'put' | 'patch' | 'options'
 
-    export type Route = { readonly path: Path } & Record<Method, (...middlewares: NextHandleFunction[]) => this>
+    export type Route = { readonly path: Path } & Record<Method, (middleware: NextHandleFunction, ...middlewares: NextHandleFunction[]) => this>
 
     export interface Options {
       caseSensitive?: boolean
@@ -34,7 +35,10 @@ declare module 'router' {
       param: <K extends string | number>(name: K, fn: ParamCallback<K>) => this
     }
 
-    export type Router = InnerRouter & Record<'use' | Method, (pathOrMiddleware: Path | NextHandleFunction, ...middlewares: NextHandleFunction[]) => this>
+    export type Router = InnerRouter & Record<'use' | Method, {
+      (path: Path, middlewares: NextHandleFunction, ...middlewares: NextHandleFunction[]): this
+      (middleware: NextHandleFunction, ...middlewares: NextHandleFunction[]): this
+    }>
 
     interface RouterType {
       new (options?: Options): Router

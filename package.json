@@ -31,7 +31,6 @@
     "@rollup/plugin-node-resolve": "^13.0.2",
     "@types/connect": "^3.4.35",
     "@types/node": "^16.3.2",
-    "@types/path-to-regexp": "^1.7.0",
     "next": "^11.0.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.53.2",
