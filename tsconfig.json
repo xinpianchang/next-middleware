@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "lib": ["esnext"],
+      "allowJs": true,
+      "strict": true,
+      "strictNullChecks": true,
+      "forceConsistentCasingInFileNames": true,
+      "esModuleInterop": true,
+      "emitDeclarationOnly": true,
+      "declaration": true,
+      "module": "esnext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "downlevelIteration": true,
+      "jsx": "preserve",
+      "skipLibCheck": true,
+      "outDir": "./"
+    },
+    "exclude": ["node_modules"],
+    "include": [
+      "router.d.ts",
+      "src/**/*.ts"
+    ]
+  }
