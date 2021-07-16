@@ -4,7 +4,7 @@ declare module 'router' {
   import { NextFunction, NextHandleFunction } from 'connect'
   import { IncomingMessage, ServerResponse } from 'http'
 
-  export type PATH = string | RegExp | Array<string | RegExp>
+  export type Path = string | RegExp | Array<string | RegExp>
 
   export namespace Router {
     export interface RouteType {
