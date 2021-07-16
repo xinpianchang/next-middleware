@@ -14,7 +14,7 @@ declare module 'router' {
 
     type Method = 'all' | 'head' | 'get' | 'post' | 'delete' | 'put' | 'patch' | 'options'
 
-    export type Route = { readonly path: Path } & Record<Method, (middleware: NextHandleFunction, ...middlewares: NextHandleFunction[]) => this>
+    export type Route = { readonly path: Path } & Record<Method, (middleware: NextHandleFunction, ...middlewares: NextHandleFunction[]) => Route>
 
     export interface Options {
       caseSensitive?: boolean
@@ -36,8 +36,8 @@ declare module 'router' {
     }
 
     export type Router = InnerRouter & Record<'use' | Method, {
-      (path: Path, middleware: NextHandleFunction, ...middlewares: NextHandleFunction[]): this
-      (middleware: NextHandleFunction, ...middlewares: NextHandleFunction[]): this
+      (path: Path, middleware: NextHandleFunction, ...middlewares: NextHandleFunction[]): Router
+      (middleware: NextHandleFunction, ...middlewares: NextHandleFunction[]): Router
     }>
 
     interface RouterType {

@@ -15,7 +15,6 @@
       "isolatedModules": true,
       "downlevelIteration": true,
       "jsx": "preserve",
-      "skipLibCheck": true,
       "outDir": "./"
     },
     "exclude": ["node_modules"],
