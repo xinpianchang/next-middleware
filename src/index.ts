@@ -1,5 +1,5 @@
 import Router from 'router'
-import Server from 'next/dist/next-server/server/next-server'
+import Server from 'next/dist/server/next-server'
 
 const router = Router()
 

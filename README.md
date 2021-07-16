@@ -1,8 +1,8 @@
 # usage
 ```javascript
-const useNextMiddleware = require('@newstudios/next-middleware')
+const router = require('@newstudios/next-middleware')
 
-useNextMiddleware((req, res, next) => {
+router.use((req, res, next) => {
   // req and res process
   // ....
 
