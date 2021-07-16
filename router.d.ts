@@ -36,7 +36,7 @@ declare module 'router' {
     }
 
     export type Router = InnerRouter & Record<'use' | Method, {
-      (path: Path, middlewares: NextHandleFunction, ...middlewares: NextHandleFunction[]): this
+      (path: Path, middleware: NextHandleFunction, ...middlewares: NextHandleFunction[]): this
       (middleware: NextHandleFunction, ...middlewares: NextHandleFunction[]): this
     }>
 
