@@ -2,7 +2,7 @@
 
 declare module 'router' {
   import { Path } from "path-to-regexp"
-  import { NextFunction, NextHandleFunction, HandleFunction } from "connect"
+  import { NextFunction, NextHandleFunction } from "connect"
   import { IncomingMessage, ServerResponse } from "http"
 
   export namespace Router {
@@ -11,17 +11,9 @@ declare module 'router' {
       prototype: Route
     }
 
-    export interface Route {
-      readonly path: Path;
-      all: (...middlewares: HandleFunction[]) => this
-      head: (...middlewares: HandleFunction[]) => this
-      get: (...middlewares: HandleFunction[]) => this
-      post: (...middlewares: HandleFunction[]) => this
-      delete: (...middlewares: HandleFunction[]) => this
-      put: (...middlewares: HandleFunction[]) => this
-      patch: (...middlewares: HandleFunction[]) => this
-      options: (...middlewares: HandleFunction[]) => this
-    }
+    type Method = 'all' | 'head' | 'get' | 'post' | 'delete' | 'put' | 'patch' | 'options'
+
+    export type Route = { readonly path: Path } & Record<Method, (...middlewares: NextHandleFunction[]) => this>
 
     export interface Options {
       caseSensitive?: boolean
@@ -37,20 +29,12 @@ declare module 'router' {
       name: K,
     ) => any
 
-    export interface Router extends NextHandleFunction {
+    interface InnerRouter extends NextHandleFunction {
       route(path: Path): Route
       param: <K extends string | number>(name: K, fn: ParamCallback<K>) => this
-      use: (pathOrMiddleware: Path | HandleFunction, ...middlewares: HandleFunction[]) => this
-      all: (pathOrMiddleware: Path | HandleFunction, ...middlewares: HandleFunction[]) => this
-      head: (pathOrMiddleware: Path | HandleFunction, ...middlewares: HandleFunction[]) => this
-      get: (pathOrMiddleware: Path | HandleFunction, ...middlewares: HandleFunction[]) => this
-      post: (pathOrMiddleware: Path | HandleFunction, ...middlewares: HandleFunction[]) => this
-      delete: (pathOrMiddleware: Path | HandleFunction, ...middlewares: HandleFunction[]) => this
-      del: (pathOrMiddleware: Path | HandleFunction, ...middlewares: HandleFunction[]) => this
-      put: (pathOrMiddleware: Path | HandleFunction, ...middlewares: HandleFunction[]) => this
-      patch: (pathOrMiddleware: Path | HandleFunction, ...middlewares: HandleFunction[]) => this
-      options: (pathOrMiddleware: Path | HandleFunction, ...middlewares: HandleFunction[]) => this
     }
+
+    export type Router = InnerRouter & Record<'use' | Method, (pathOrMiddleware: Path | NextHandleFunction, ...middlewares: NextHandleFunction[]) => this>
 
     interface RouterType {
       new (options?: Options): Router

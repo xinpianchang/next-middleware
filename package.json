@@ -5,7 +5,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "clean": "rimraf ./index* ./middleware*",
+    "clean": "rimraf index.d.ts index.js",
     "prepublishOnly": "npm run build",
     "build": "npm run clean && npm run build:types && npm run build:js",
     "build:js": "rollup -c",
@@ -47,8 +47,6 @@
   },
   "files": [
     "index.js",
-    "index.d.ts",
-    "middleware.js",
-    "middleware.d.ts"
+    "index.d.ts"
   ]
 }

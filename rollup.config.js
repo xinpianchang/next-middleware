@@ -23,7 +23,7 @@ const makeExternalPredicate = externalArr => {
 
 // CommonJS
 const cjs = {
-  input: ['src/index.ts', 'src/middleware.ts'],
+  input: 'src/index.ts',
   output: {
     dir: './',
     format: 'cjs',
