@@ -31,6 +31,7 @@ const cjs = {
     exports: 'default',
   },
   external: makeExternalPredicate([
+    'http',
     ...Object.keys(pkg.dependencies || {}),
     ...Object.keys(pkg.peerDependencies || {}),
   ]),
