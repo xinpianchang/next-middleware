@@ -42,7 +42,7 @@
   },
   "repository": "github:xinpianchang/next-middleware",
   "publishConfig": {
-    "registry": "https://maven.vmovier.cc/repository/npmvm/"
+    "registry": "https://registry.npmjs.org"
   },
   "files": [
     "index.js",
