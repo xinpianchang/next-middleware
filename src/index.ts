@@ -9,6 +9,7 @@ Server.prototype.getRequestHandler = function getRequestHandler() {
   const handler = originalHandler.call(this)
   return async (req, res, parsedUrl) => {
     if (req instanceof IncomingMessage && res instanceof ServerResponse) {
+      // only nodejs runtime can be handled with middleware
       return router(req, res, () => handler(req, res, parsedUrl))
     }
     return handler(req, res, parsedUrl)
