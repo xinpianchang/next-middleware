@@ -5,11 +5,10 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "clean": "rimraf index.d.ts index.js",
+    "clean": "rimraf index.js",
     "prepublishOnly": "npm run build",
-    "build": "npm run clean && npm run build:types && npm run build:js",
-    "build:js": "rollup -c",
-    "build:types": "tsc --emitDeclarationOnly --skipLibCheck"
+    "build": "npm run clean && npm run build:js",
+    "build:js": "rollup -c"
   },
   "keywords": [
     "next.js",
@@ -34,7 +33,6 @@
     "next": "^12",
     "rimraf": "^3.0.2",
     "rollup": "^2.53.2",
-    "tsc": "^2.0.3",
     "typescript": "^4.3.5"
   },
   "dependencies": {
