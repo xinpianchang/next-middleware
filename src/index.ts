@@ -1,6 +1,6 @@
 import Router, { Router as NSRouter } from 'router'
 import NextNodeServer from 'next/dist/server/next-server'
-import { IncomingMessage, ServerResponse, type Server as HttpServer } from 'http'
+import { IncomingMessage, ServerResponse, Server as HttpServer } from 'http'
 import EventEmitter from 'events'
 
 const router = Router() as NRouter
@@ -10,8 +10,6 @@ declare module 'next/dist/server/base-server' {
     httpServer?: HttpServer
   }
 }
-
-export let httpServer: HttpServer | undefined = undefined
 
 const originalHandler = NextNodeServer.prototype.getRequestHandler
 NextNodeServer.prototype.getRequestHandler = function getRequestHandler(this: NextNodeServer) {
@@ -27,7 +25,7 @@ NextNodeServer.prototype.getRequestHandler = function getRequestHandler(this: Ne
 
 const originalPrepare = NextNodeServer.prototype.prepare
 NextNodeServer.prototype.prepare = function prepare(this: NextNodeServer) {
-  httpServer = this.serverOptions.httpServer
+  const httpServer = this.serverOptions.httpServer
   httpServer && router.events.emit('init', httpServer)
   return originalPrepare.call(this)
 }

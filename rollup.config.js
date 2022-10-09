@@ -32,6 +32,7 @@ const cjs = {
   },
   external: makeExternalPredicate([
     'http',
+    'events',
     ...Object.keys(pkg.dependencies || {}),
     ...Object.keys(pkg.peerDependencies || {}),
   ]),
