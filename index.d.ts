@@ -18,4 +18,4 @@ interface RouterEventEmitter extends EventEmitter {
 interface NRouter extends NSRouter.Router {
     events: RouterEventEmitter;
 }
-export default router;
+export = router;
