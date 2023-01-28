@@ -1,5 +1,6 @@
 /// <reference types="node" />
 /// <reference path="./router.d.ts" />
+
 import { Router as NSRouter } from 'router';
 import { Server as HttpServer } from 'http';
 import EventEmitter from 'events';
