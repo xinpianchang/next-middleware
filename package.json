@@ -1,6 +1,6 @@
 {
   "name": "@newstudios/next-middleware",
-  "version": "2.2.0-alpha.2",
+  "version": "2.2.0-alpha.3",
   "description": "next.js middleware",
   "main": "index.js",
   "types": "index.d.ts",
