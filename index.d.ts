@@ -5,7 +5,6 @@ import { Router as NSRouter } from 'router';
 import type { IncomingMessage, Server as HttpServer, ServerResponse } from 'http';
 import EventEmitter from 'events';
 declare const router: NRouter;
-declare const httpContextAsyncLocalStorage: import("async_hooks").AsyncLocalStorage<HttpContext>;
 
 declare module 'next/dist/server/base-server' {
     interface Options {
@@ -19,8 +18,8 @@ interface RouterEventEmitter extends EventEmitter {
     off(event: 'init', listener: (server: HttpServer) => any): this;
 }
 interface NRouter extends NSRouter.Router {
-    events: RouterEventEmitter;
-    storage: typeof httpContextAsyncLocalStorage;
+    readonly events: RouterEventEmitter;
+    readonly storage: import("async_hooks").AsyncLocalStorage<HttpContext>;
 }
 interface HttpContext {
   req: IncomingMessage;

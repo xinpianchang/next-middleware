@@ -1,15 +1,13 @@
 import Router, { Router as NSRouter } from 'router'
 import EventEmitter from 'events'
 import type { IncomingMessage, Server as HttpServer, ServerResponse } from 'http'
+import type { AsyncLocalStorage } from 'async_hooks'
 import inject from './inject'
-import { createAsyncLocalStorage } from 'next/dist/client/components/async-local-storage'
 
 const router = Router() as NRouter
-const httpContextAsyncLocalStorage = createAsyncLocalStorage<HttpContext>()
 
 const events = new EventEmitter() as RouterEventEmitter
 router.events = events
-router.storage = httpContextAsyncLocalStorage
 
 interface RouterEventEmitter extends EventEmitter {
   emit(event: 'init', server: HttpServer): boolean
@@ -20,7 +18,7 @@ interface RouterEventEmitter extends EventEmitter {
 
 export interface NRouter extends NSRouter.Router {
   events: RouterEventEmitter
-  storage: typeof httpContextAsyncLocalStorage
+  storage: AsyncLocalStorage<HttpContext>
 }
 
 export interface HttpContext {
@@ -29,5 +27,4 @@ export interface HttpContext {
 }
 
 setTimeout(inject, 0, router)
-
 export default router
