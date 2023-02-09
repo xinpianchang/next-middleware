@@ -10,7 +10,10 @@ export default function inject(router: NRouter) {
     return async (req: any, res: any, parsedUrl: string) => {
       if (req instanceof IncomingMessage && res instanceof ServerResponse) {
         // only nodejs runtime can be handled with middleware
-        return router(req, res, () => handler(req, res, parsedUrl))
+        return router(req, res, () => {
+          const ctx = { req, res }
+          return router.storage.run(ctx, () => handler(req, res, parsedUrl))
+        })
       }
       return handler(req, res, parsedUrl)
     }
