@@ -1,5 +1,4 @@
 /// <reference types="node" />
-/// <reference path="./router.d.ts" />
 
 import { Router as NSRouter } from 'router';
 import type { IncomingMessage, Server as HttpServer, ServerResponse } from 'http';

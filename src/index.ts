@@ -1,13 +1,14 @@
 import Router, { Router as NSRouter } from 'router'
 import EventEmitter from 'events'
 import type { IncomingMessage, Server as HttpServer, ServerResponse } from 'http'
-import type { AsyncLocalStorage } from 'async_hooks'
+import { AsyncLocalStorage } from 'async_hooks'
 import inject from './inject'
 
 const router = Router() as NRouter
 
 const events = new EventEmitter() as RouterEventEmitter
 router.events = events
+router.storage = new AsyncLocalStorage()
 
 interface RouterEventEmitter extends EventEmitter {
   emit(event: 'init', server: HttpServer): boolean

@@ -1,13 +1,9 @@
 import { IncomingMessage, ServerResponse } from 'http'
-import { createAsyncLocalStorage } from 'next/dist/client/components/async-local-storage'
 import type { NRouter } from '.'
 
 export default function inject(router: NRouter) {
   const NextNodeServer = require('next/dist/server/next-server').default
   const originalHandler = NextNodeServer.prototype.getRequestHandler
-
-  // inject asynclocalstorage here, because next has been initialized, thus createAsyncLocalStorage works
-  router.storage = createAsyncLocalStorage()
 
   NextNodeServer.prototype.getRequestHandler = function getRequestHandler() {
     const handler = originalHandler.call(this)

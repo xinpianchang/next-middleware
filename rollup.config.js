@@ -33,6 +33,7 @@ const cjs = {
   external: makeExternalPredicate([
     'http',
     'events',
+    'async_hooks',
     ...Object.keys(pkg.dependencies || {}),
     ...Object.keys(pkg.peerDependencies || {}),
   ]),
